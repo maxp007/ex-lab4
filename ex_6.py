@@ -27,25 +27,19 @@ with open(path, encoding='utf-8') as f:
 def f1(arg):
     return list(sorted(unique(field(arg, "job-name"), ignore_case=True)))
 
-
 @print_result
 def f2(arg):
     return list(filter(lambda x: "программист" in x, arg))
 
-
-
 @print_result
 def f3(arg):
     return list(map(lambda x: x + " с опытом Python", arg))
-
 
 @print_result
 def f4(arg):
     sal_list = list(gen_random(100000, 200000, len(arg)))
     worklist = iter(map(lambda x: x + " зарплата", arg))
     return ["{} {}".format(work, sal) for (work, sal) in zip(worklist, sal_list)]
-
-
 
 with timer():
     f4(f3(f2(f1(data))))
